@@ -31,7 +31,7 @@ class ChatBubbble extends StatelessWidget {
                       fit: BoxFit.cover,
                     ))
                 : const SizedBox(),
-                SizedBox(width: 30,),
+                const SizedBox(width: 30,),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           width: 470,

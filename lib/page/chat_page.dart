@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/bloc/selected_chat.dart';
 import 'package:health_care/component/chat_bubble.dart';
 import 'package:health_care/component/chat_input.dart';
 import 'package:health_care/component/doctor_chat.dart';
 import 'package:health_care/model/doctor_model.dart';
 import 'package:health_care/model/user_model.dart';
 import 'package:health_care/style.dart';
-
-final SelectedChat chat = SelectedChat(chatData: {
-  'name': doctorList[1].name,
-  'imagePath': doctorList[1].imagePath
-});
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -47,10 +41,7 @@ class ChatPage extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
-                        onTap: () {
-                          chat.updateData(doctorList[index].name,
-                              doctorList[index].imagePath);
-                        },
+                        onTap: () {},
                         child: DoctorChat(
                           imagePath: doctorList[index].imagePath,
                           name: doctorList[index].name,

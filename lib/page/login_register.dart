@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/bloc/login_or_register.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:health_care/controller/login_or_register.dart';
 import 'package:health_care/component/login_card.dart';
 import 'package:health_care/component/register_card.dart';
 
@@ -10,7 +11,7 @@ class LoginRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xffebeff0),
+      color: const Color(0xffebeff0),
       child: Stack(
         children: [
           Align(
@@ -50,16 +51,12 @@ class LoginRegister extends StatelessWidget {
                 height: 100,
                 fit: BoxFit.cover,
               )),
-          StreamBuilder(
-            stream: loginOrRegister.stream,
-            builder: (context, snapshot) {
-              return (loginOrRegister.isLogin == true)
-                  ? const Align(
-                      alignment: Alignment(0.7, 0), child: LoginCard())
-                  : const Align(
-                      alignment: Alignment(0.7, 0), child: RegisterCard());
-            },
-          )
+          Obx(() {
+            return (loginOrRegister.isLogin.value == true)
+                ? const Align(alignment: Alignment(0.7, 0), child: LoginCard())
+                : const Align(
+                    alignment: Alignment(0.7, 0), child: RegisterCard());
+          })
         ],
       ),
     );
