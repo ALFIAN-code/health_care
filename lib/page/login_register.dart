@@ -52,7 +52,7 @@ class LoginRegister extends StatelessWidget {
                 fit: BoxFit.cover,
               )),
           Obx(() {
-            return (loginOrRegister.isLogin.value == true)
+            return (loginOrRegister.isLogin == true)
                 ? const Align(alignment: Alignment(0.7, 0), child: LoginCard())
                 : const Align(
                     alignment: Alignment(0.7, 0), child: RegisterCard());

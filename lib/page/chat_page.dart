@@ -41,7 +41,9 @@ class ChatPage extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
-                        onTap: () {},
+                        onTap: () {
+
+                        },
                         child: DoctorChat(
                           imagePath: doctorList[index].imagePath,
                           name: doctorList[index].name,

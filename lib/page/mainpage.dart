@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:health_care/controller/page_controller.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:health_care/component/navbar_button.dart';
+import 'package:health_care/controller/page_controller.dart';
 import 'package:health_care/model/user_model.dart';
 import 'package:health_care/page/chat_page.dart';
 import 'package:health_care/page/homepage.dart';
@@ -62,7 +62,8 @@ class MainPage extends StatelessWidget {
                               color: Colors.black.withOpacity(0.7),
                             ),
                             text: 'Home',
-                            selected: (pageState.pageState.value == 1) ? true : false,
+                            selected:
+                                (pageState.pageState.value == 1) ? true : false,
                           ),
                           const SizedBox(
                             height: 25,
@@ -75,8 +76,9 @@ class MainPage extends StatelessWidget {
                                 color: Colors.black.withOpacity(0.7),
                               ),
                               text: 'Chat',
-                              selected:
-                                  (pageState.pageState.value == 2) ? true : false),
+                              selected: (pageState.pageState.value == 2)
+                                  ? true
+                                  : false),
                           const SizedBox(
                             height: 25,
                           ),
@@ -88,8 +90,9 @@ class MainPage extends StatelessWidget {
                                 color: Colors.black.withOpacity(0.7),
                               ),
                               text: 'Setting',
-                              selected:
-                                  (pageState.pageState.value == 3) ? true : false)
+                              selected: (pageState.pageState.value == 3)
+                                  ? true
+                                  : false)
                         ],
                       ),
                     );
@@ -152,7 +155,7 @@ class MainPage extends StatelessWidget {
               ),
             ),
           ),
-          Obx(() {
+          Expanded(child: Obx(() {
             if (pageState.pageState.value == 1) {
               return Homepage();
             } else if (pageState.pageState.value == 2) {
@@ -164,7 +167,7 @@ class MainPage extends StatelessWidget {
                 child: Text('state error'),
               );
             }
-          })
+          }))
         ],
       ),
     );
