@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:health_care/bloc/login_or_register.dart';
+import 'package:health_care/controller/login_or_register.dart';
 import 'package:health_care/component/login_card.dart';
 import 'package:health_care/page/mainpage.dart';
 import 'package:health_care/style.dart';
