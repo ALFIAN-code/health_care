@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:health_care/component/navbar_button.dart';
 import 'package:health_care/controller/page_controller.dart';
 import 'package:health_care/model/user_model.dart';
@@ -10,12 +9,17 @@ import 'package:health_care/page/login_register.dart';
 import 'package:health_care/page/setting_page.dart';
 import 'package:health_care/style.dart';
 
-class MainPage extends StatelessWidget {
-  MainPage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   static const mainRoute = '/main';
 
-  final PageState pageState = PageState();
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  PageState pageState = PageState();
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +53,14 @@ class MainPage extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  Obx(() {
-                    return Padding(
+                  Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         children: [
                           NavbarButton(
-                            onTap: () => pageState.toHomepage(),
+                            onTap: () => setState(() {
+                              pageState.toHomepage();
+                            }),
                             icon: Icon(
                               Icons.home_rounded,
                               size: 35,
@@ -63,40 +68,43 @@ class MainPage extends StatelessWidget {
                             ),
                             text: 'Home',
                             selected:
-                                (pageState.pageState.value == 1) ? true : false,
+                                (pageState.pageState == 1) ? true : false,
                           ),
                           const SizedBox(
                             height: 25,
                           ),
                           NavbarButton(
-                              onTap: () => pageState.toChatpage(),
+                              onTap: () => setState(() {
+                                pageState.toChatpage();
+                              }),
                               icon: Icon(
                                 Icons.mark_chat_unread_rounded,
                                 size: 30,
                                 color: Colors.black.withOpacity(0.7),
                               ),
                               text: 'Chat',
-                              selected: (pageState.pageState.value == 2)
+                              selected: (pageState.pageState == 2)
                                   ? true
                                   : false),
                           const SizedBox(
                             height: 25,
                           ),
                           NavbarButton(
-                              onTap: () => pageState.toSetting(),
+                              onTap: () => setState(() {
+                                pageState.toSetting();
+                              }),
                               icon: Icon(
                                 Icons.settings_rounded,
                                 size: 30,
                                 color: Colors.black.withOpacity(0.7),
                               ),
                               text: 'Setting',
-                              selected: (pageState.pageState.value == 3)
+                              selected: (pageState.pageState == 3)
                                   ? true
                                   : false)
                         ],
                       ),
-                    );
-                  }),
+                    ),
                   const Expanded(child: SizedBox()),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 30),
@@ -155,19 +163,7 @@ class MainPage extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(child: Obx(() {
-            if (pageState.pageState.value == 1) {
-              return Homepage();
-            } else if (pageState.pageState.value == 2) {
-              return const ChatPage();
-            } else if (pageState.pageState.value == 3) {
-              return const SettingPage();
-            } else {
-              return const Center(
-                child: Text('state error'),
-              );
-            }
-          }))
+          Expanded(child: (pageState.pageState == 1)? Homepage():(pageState.pageState == 2)? const ChatPage(): const SettingPage())
         ],
       ),
     );
