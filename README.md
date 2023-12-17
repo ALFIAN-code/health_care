@@ -1,6 +1,7 @@
 # health_care
 
-A new Flutter project.
+sebuah project yang dibuat untuk tugas akhir matkul web desain semester 1
+
 
 ## Getting Started
 
